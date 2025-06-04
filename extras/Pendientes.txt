@@ -22,3 +22,9 @@ Nuevas funcionalidades:
         Para subir a Google Drive: necesitas autenticar una cuenta (OAuth2) y usar pydrive o google-api-python-client.
         No tengo configurada una cuenta de Drive con credenciales para esto, ya que estamos en desarrollo y no tenemos datos del cliente.
 
+Proyecto_espacio\espacio
+Proyecto_espacio\espacio\espacio\settings.py
+Proyecto_espacio\espacio\manage.py
+Proyecto_espacio\espacio\db.sqlite3
+Proyecto_espacio\static\css\style.css
+Proyecto_espacio\requirements.txt
