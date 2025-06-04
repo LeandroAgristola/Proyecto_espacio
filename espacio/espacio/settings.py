@@ -13,22 +13,22 @@ import os
 from pathlib import Path
 from django.contrib.messages import constants as messages
 from celery.schedules import crontab
-import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent  
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-7318ciiy)2mf*@!dd-^0qk&c!a7t!i_jlz_)$q7&$rr9(=m1k+')
+SECRET_KEY = 'django-insecure-7318ciiy)2mf*@!dd-^0qk&c!a7t!i_jlz_)$q7&$rr9(=m1k+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
+DEBUG = True
 
-ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', '*').split(',')
+ALLOWED_HOSTS = ['*']
+
 
 
 # Application definition
@@ -51,7 +51,6 @@ INSTALLED_APPS = [
     'clientes',
     'configuracion',
     'calendario',
-    'storages', 
 ]
 
 MIDDLEWARE = [
@@ -62,7 +61,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'espacio.urls'
@@ -90,11 +88,12 @@ WSGI_APPLICATION = 'espacio.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=f'sqlite:///{BASE_DIR / "db.sqlite3"}', 
-        conn_max_age=600 # Opcional: Para mantener conexiones vivas
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -121,12 +120,22 @@ LANGUAGE_CODE = 'es-eu'
 
 USE_TZ = True
 
-TIME_ZONE = 'America/Argentina/Buenos_Aires'  # Ajusta zona horaria
+TIME_ZONE = 'America/Argentina/Buenos_Aires'  # Ajusta según tu zona horaria
 
 USE_I18N = True
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
+
+
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, '../static'),
+]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -142,53 +151,15 @@ MESSAGE_TAGS = {
     messages.WARNING: 'warning',
 }
 
-# --- CONFIGURACIÓN DE ARCHIVOS ESTÁTICOS Y DE MEDIA CON GOOGLE CLOUD STORAGE ---
-# Asegúrate de haber instalado `django-storages` y `google-cloud-storage`
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-GS_BUCKET_NAME = os.environ.get('GS_BUCKET_NAME') # Nombre de tu bucket de Cloud Storage
-GS_MEDIA_LOCATION = 'media' # Carpeta dentro del bucket para archivos de media
-GS_STATIC_LOCATION = 'static' # Carpeta dentro del bucket para archivos estáticos
+CSRF_TRUSTED_ORIGINS = [
+    'https://localhost:8000',
+    'http://localhost:8000',
 
-if not DEBUG: # En producción, usa Cloud Storage para estáticos y media
-    DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
-    STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+]
+CSRF_COOKIE_SECURE = False 
+CSRF_COOKIE_HTTPONLY = False
 
-    GS_PROJECT_ID = os.environ.get('GS_PROJECT_ID') # Tu ID de proyecto de GCP
-    GS_AUTO_CREATE_BUCKET = False # Opcional: No crear el bucket automáticamente
-    GS_QUERYSTRING_AUTH = True # Opcional: Firma las URLs temporalmente para acceso privado
-
-    # URLs base para los archivos en Cloud Storage
-    STATIC_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/{GS_STATIC_LOCATION}/'
-    MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/{GS_MEDIA_LOCATION}/'
-else: # En desarrollo, usa el sistema de archivos local
-    STATIC_URL = '/static/' 
-    STATICFILES_DIRS = [
-        os.path.join(BASE_DIR.parent, 'static'), 
-    ]
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') 
-
-    MEDIA_URL = '/media/' 
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-# CSRF_TRUSTED_ORIGINS y CORS para Cloud Run
-# Cuando estés en producción, tu dominio de Cloud Run y cualquier dominio personalizado
-# que uses deben estar aquí.
-CSRF_TRUSTED_ORIGINS = os.environ.get('CSRF_TRUSTED_ORIGINS', 'https://localhost:8000,http://localhost:8000').split(',')
-CSRF_COOKIE_SECURE = os.environ.get('DJANGO_CSRF_COOKIE_SECURE', 'False') == 'True'
-CSRF_COOKIE_HTTPONLY = os.environ.get('DJANGO_CSRF_COOKIE_HTTPONLY', 'False') == 'True'
-
-EMAIL_BACKEND = os.environ.get('DJANGO_EMAIL_BACKEND', 'django.core.mail.backends.console.EmailBackend') # [cite: 1]
-
-# Configuración de Celery (si la usas en producción)
-# BROKER_URL = os.environ.get('CELERY_BROKER_URL')
-# CELERY_RESULT_BACKEND = os.environ.get('CELERY_RESULT_BACKEND')
-# CELERY_ACCEPT_CONTENT = ['json']
-# CELERY_TASK_SERIALIZER = 'json'
-# CELERY_RESULT_SERIALIZER = 'json'
-# CELERY_TIMEZONE = 'America/Argentina/Buenos_Aires'
-# CELERY_BEAT_SCHEDULE = {
-#    'example-task': {
-#        'task': 'your_app.tasks.your_task_name',
-#        'schedule': crontab(minute='*/5'), # Ejecutar cada 5 minutos
-#    },
-# }
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
