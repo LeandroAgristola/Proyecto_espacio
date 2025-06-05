@@ -35,14 +35,14 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django_bootstrap5',
     'crispy_bootstrap5',
-    'webPublic',
-    'management',
-    'empleados',
-    'eventos',
-    'planes',
-    'clientes',
-    'configuracion',
-    'calendario',
+    'espacio.webPublic', # Corrected path
+    'espacio.management', # Corrected path
+    'espacio.empleados', # Corrected path
+    'espacio.eventos', # Corrected path
+    'espacio.planes', # Corrected path
+    'espacio.clientes', # Corrected path
+    'espacio.configuracion', # Corrected path
+    'espacio.calendario', # Corrected path
     'cloudinary_storage',  # Antes de staticfiles
     'django.contrib.staticfiles',
     'cloudinary',
