@@ -18,7 +18,7 @@ import dj_database_url #Deploy en render
 
 BASE_DIR = Path(__file__).resolve().parent.parent  
 
-SECRET_KEY = 'django-insecure-7318ciiy)2mf*@!dd-^0qk&c!a7t!i_jlz_)$q7&$rr9(=m1k+'
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "inseguro-default-dev-key") #Deploy en render
 
 DEBUG = os.getenv('DEBUG', 'False') == 'True' #Deploy en render
 
