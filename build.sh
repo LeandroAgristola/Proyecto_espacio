@@ -3,8 +3,9 @@ set -o errexit
 
 pip install -r requirements.txt
 
-# Correctly adds the project root to PYTHONPATH, allowing Django to find 'espacio.webPublic'
-export PYTHONPATH=$PYTHONPATH:.
+# Añade la ruta absoluta de la raíz del proyecto al PYTHONPATH
+# Esto asegura que Python encuentre el paquete 'espacio' y sus sub-aplicaciones.
+export PYTHONPATH=$PYTHONPATH:/opt/render/project/src/ 
 
 # Ejecuta collectstatic
 python espacio/manage.py collectstatic --noinput
@@ -13,5 +14,4 @@ python espacio/manage.py collectstatic --noinput
 python espacio/manage.py migrate
 
 # Ejecuta el script de superusuario
-# Asegúrate de que esta sea la ruta correcta: ahora es 'espacio/create_superuser.py'
 python ./create_superuser.py
