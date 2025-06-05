@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'webPublic',
     'management',
-    'eempleados',
+    'empleados',
     'eventos',
     'planes',
     'clientes',
