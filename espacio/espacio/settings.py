@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'planes',     
     'clientes',   
     'configuracion',
-    'calendario'
+    'calendario',
     'cloudinary_storage',  # Antes de staticfiles
     'django.contrib.staticfiles',
     'cloudinary',
