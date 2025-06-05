@@ -15,4 +15,4 @@ python espacio/manage.py migrate
 
 # Ejecuta el script de superusuario
 # Asegúrate de que esta sea la ruta correcta: ahora es 'espacio/create_superuser.py'
-python espacio/create_superuser.py
+python ./create_superuser.py
