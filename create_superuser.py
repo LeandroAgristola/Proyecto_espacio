@@ -1,8 +1,8 @@
 import os
 import django
 
-# Esta es la ruta correcta a tus settings para la estructura 'espacio/espacio/settings.py'
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'espacio.espacio.settings')
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'myproject.core.setting')
 django.setup()
 
 from django.contrib.auth import get_user_model

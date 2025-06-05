@@ -5,15 +5,14 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('webPublic.urls')),
-    path('management/empleados/', include('empleados.urls')),
-    path('management/', include('management.urls')),
-    path('management/eventos/', include('eventos.urls', namespace='eventos_admin')),
-    path('management/planes/', include('planes.urls')),
-    path('management/clientes/', include('clientes.urls')),
-    path('management/configuracion', include('configuracion.urls')),
-    path('management/calendario/', include('calendario.urls', namespace='calendario')),
-
+    path('', include('myproject.webPublic.urls')),
+    path('management/empleados/', include('myproject.empleados.urls')),
+    path('management/', include('myproject.management.urls')),
+    path('management/eventos/', include('myproject.eventos.urls', namespace='eventos_admin')),
+    path('management/planes/', include('myproject.planes.urls')),
+    path('management/clientes/', include('myproject.clientes.urls')),
+    path('management/configuracion', include('myproject.configuracion.urls')),
+    path('management/calendario/', include('myproject.calendario.urls', namespace='calendario')),
 
 ]
 

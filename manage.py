@@ -1,5 +1,3 @@
-# espacio/manage.py
-
 #!/usr/bin/env python
 """Django's command-line utility for administrative tasks."""
 import os
@@ -8,8 +6,7 @@ import sys
 
 def main():
     """Run administrative tasks."""
-    # ¡CRÍTICO!: Asegúrate de que esta línea apunte a 'espacio.espacio.settings'
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'myproject.core.settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'myproject.core.settings') 
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
