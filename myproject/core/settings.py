@@ -40,14 +40,14 @@ INSTALLED_APPS = [
     # ¡IMPORTANTE! Aquí van SIN el prefijo 'espacio.'
     # porque 'espacio/' ya es la raíz que se añade al PYTHONPATH,
     # y tus apps están directamente dentro de esa raíz.
-    'webPublic',  
-    'management', 
-    'empleados',  
-    'eventos',    
-    'planes',     
-    'clientes',   
-    'configuracion',
-    'calendario', 
+    'myproject.webPublic',  
+    'myproject.management', 
+    'myproject.empleados',  
+    'myproject.eventos',    
+    'myproject.planes',     
+    'myproject.clientes',   
+    'myproject.configuracion',
+    'myproject.calendario', 
 
     'cloudinary_storage',  
     'django.contrib.staticfiles',
@@ -66,7 +66,7 @@ MIDDLEWARE = [
 
 ]
 
-ROOT_URLCONF = 'espacio.espacio.urls' 
+ROOT_URLCONF = 'myproject.core.urls'
 
 TEMPLATES = [
     {
@@ -84,7 +84,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'espacio.espacio.wsgi.application' 
+WSGI_APPLICATION = 'myproject.core.wsgi.application' 
 
 DATABASES = {
     'default': dj_database_url.config(default=os.getenv('DATABASE_URL')) #Deploy en render
