@@ -3,9 +3,10 @@ set -o errexit
 
 pip install -r requirements.txt
 
-# Añade la carpeta 'espacio/' (donde reside manage.py y tus apps) al PYTHONPATH.
-# Esto permite que Python encuentre tus apps directamente.
-export PYTHONPATH=$PYTHONPATH:./espacio/
+# CRÍTICO: Añade la raíz del repositorio al PYTHONPATH.
+# Esto asegura que Python pueda encontrar el paquete de nivel superior 'espacio'
+# y así resolver 'espacio.espacio' y también 'webPublic' directamente dentro del primer 'espacio'.
+export PYTHONPATH=$PYTHONPATH:/opt/render/project/src/
 
 # Ejecuta collectstatic
 python espacio/manage.py collectstatic --noinput

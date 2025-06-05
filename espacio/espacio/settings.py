@@ -35,6 +35,11 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django_bootstrap5',
     'crispy_bootstrap5',
+
+    # APLICACIONES PERSONALIZADAS:
+    # ¡IMPORTANTE! Aquí van SIN el prefijo 'espacio.'
+    # porque 'espacio/' ya es la raíz que se añade al PYTHONPATH,
+    # y tus apps están directamente dentro de esa raíz.
     'webPublic',  
     'management', 
     'empleados',  
@@ -42,11 +47,11 @@ INSTALLED_APPS = [
     'planes',     
     'clientes',   
     'configuracion',
-    'calendario',
-    'cloudinary_storage',  # Antes de staticfiles
+    'calendario', 
+
+    'cloudinary_storage',  
     'django.contrib.staticfiles',
     'cloudinary',
-
 ]
 
 MIDDLEWARE = [
@@ -61,7 +66,7 @@ MIDDLEWARE = [
 
 ]
 
-ROOT_URLCONF = 'espacio.espacio.urls'
+ROOT_URLCONF = 'espacio.espacio.urls' 
 
 TEMPLATES = [
     {
@@ -79,7 +84,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'espacio.espacio.wsgi.application'
+WSGI_APPLICATION = 'espacio.espacio.wsgi.application' 
 
 DATABASES = {
     'default': dj_database_url.config(default=os.getenv('DATABASE_URL')) #Deploy en render
