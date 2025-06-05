@@ -1,6 +1,6 @@
 from django import forms
 from .models import Cliente, Plan
-from calendario.models import Turno
+from myproject.calendario.models import Turno
 from django.core.exceptions import ValidationError
 from django.utils import timezone
 from django.db.models import F, Q
@@ -90,7 +90,7 @@ class ClienteForm(forms.ModelForm):
         - Valida disponibilidad de turnos seleccionados en el mes siguiente
         - Evita duplicados en días/horarios
         """
-        from calendario.models import Turno  # Asegurate de tener este import también al inicio del archivo
+        from myproject.calendario.models import Turno  # Asegurate de tener este import también al inicio del archivo
 
         cleaned_data = super().clean()
         plan = cleaned_data.get('plan')

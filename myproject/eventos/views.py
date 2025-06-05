@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.views.decorators.http import require_POST
 from .forms import EventoForm, InscribirClienteForm
 from .models import InscripcionEvento, Evento
-from clientes.models import Cliente
+from myproject.clientes.models import Cliente
 from django.http import HttpResponse, JsonResponse
 from django.conf import settings
 from datetime import date

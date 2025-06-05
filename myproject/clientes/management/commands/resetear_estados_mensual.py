@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 from django.utils import timezone
-from clientes.models import Cliente
+from myproject.clientes.models import Cliente
 from datetime import date
 import logging
 

@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from empleados.models import Empleado
-from eventos.models import Evento
-from planes.models import Plan
-from configuracion.models import Configuracion
+from myproject.empleados.models import Empleado
+from myproject.eventos.models import Evento
+from myproject.planes.models import Plan
+from myproject.configuracion.models import Configuracion
 
 def home(request):
     planes = Plan.objects.filter(mostrar_en_web=True, activo=True)

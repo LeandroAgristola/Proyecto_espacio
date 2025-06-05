@@ -1,5 +1,5 @@
 from django.db import models
-from clientes.models import Cliente
+from myproject.clientes.models import Cliente
 
 
 class Turno(models.Model):

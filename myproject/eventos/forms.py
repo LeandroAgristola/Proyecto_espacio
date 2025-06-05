@@ -4,8 +4,8 @@ from .models import Evento
 from django.utils import timezone
 from datetime import datetime
 import re
-from clientes.models import Cliente
-from eventos.models import InscripcionEvento
+from myproject.clientes.models import Cliente
+from myproject.eventos.models import InscripcionEvento
 from django.forms import DateInput
 
 # Validaciones generales

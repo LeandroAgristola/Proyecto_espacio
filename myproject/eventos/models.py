@@ -1,7 +1,7 @@
 from django.db import models
 import os
 from django.core.exceptions import ValidationError
-from clientes.models import Cliente
+from myproject.clientes.models import Cliente
 from cloudinary.models import CloudinaryField 
 
 class Evento(models.Model):

@@ -10,9 +10,9 @@ import json
 from django.http import JsonResponse
 from .models import Cliente
 from .forms import ClienteForm
-from calendario.models import Turno
-from configuracion.models import Configuracion
-from planes.models import Plan
+from myproject.calendario.models import Turno
+from myproject.configuracion.models import Configuracion
+from myproject.planes.models import Plan
 from django.core.management import call_command
 
 

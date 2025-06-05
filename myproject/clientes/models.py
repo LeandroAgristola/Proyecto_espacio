@@ -1,5 +1,5 @@
 from django.db import models
-from planes.models import Plan
+from myproject.planes.models import Plan
 from django.utils import timezone
 from django.core.exceptions import ValidationError
 from datetime import date

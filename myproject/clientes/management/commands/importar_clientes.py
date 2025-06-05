@@ -1,8 +1,8 @@
 import json
 from django.core.management.base import BaseCommand
-from clientes.models import Cliente
-from planes.models import Plan
-from calendario.models import Turno
+from myproject.clientes.models import Cliente
+from myproject.planes.models import Plan
+from myproject.calendario.models import Turno
 from datetime import datetime, timedelta
 from django.db.models import Q
 
