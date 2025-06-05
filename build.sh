@@ -1,18 +1,18 @@
 #!/usr/bin/env bash
 set -o errexit
 
-# Instala las dependencias.
 pip install -r requirements.txt
 
-# Ejecuta collectstatic (la ruta correcta a manage.py)
-python espacio/manage.py collectstatic --noinput
-
-# Ejecuta migraciones (la ruta correcta a manage.py)
-python espacio/manage.py migrate
-
-# Establece PYTHONPATH para que Python pueda encontrar tus aplicaciones (ej. webPublic)
-# Añade la carpeta 'espacio/' donde residen tus apps
+# ESTO ES CLAVE: Añade la carpeta 'espacio/' (donde residen manage.py y tus apps) al PYTHONPATH.
+# Esto permite que Python encuentre 'webPublic' y otras apps directamente.
 export PYTHONPATH=$PYTHONPATH:./espacio/
 
-# Ejecuta el script de superusuario (la ruta explícita al script)
-python ./create_superuser.py
+# Ejecuta collectstatic
+python espacio/manage.py collectstatic --noinput
+
+# Ejecuta migraciones
+python espacio/manage.py migrate
+
+# Ejecuta el script de superusuario
+# Asegúrate de que esta sea la ruta correcta: ahora es 'espacio/create_superuser.py'
+python espacio/create_superuser.py
