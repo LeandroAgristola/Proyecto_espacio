@@ -3,9 +3,9 @@ set -o errexit
 
 pip install -r requirements.txt
 
-# Añade la ruta absoluta de la raíz del proyecto al PYTHONPATH
-# Esto asegura que Python encuentre el paquete 'espacio' y sus sub-aplicaciones.
-export PYTHONPATH=$PYTHONPATH:/opt/render/project/src/ 
+# Añade la carpeta 'espacio/' (donde reside manage.py y tus apps) al PYTHONPATH.
+# Esto permite que Python encuentre tus apps directamente.
+export PYTHONPATH=$PYTHONPATH:./espacio/
 
 # Ejecuta collectstatic
 python espacio/manage.py collectstatic --noinput

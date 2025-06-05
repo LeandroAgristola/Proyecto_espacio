@@ -35,14 +35,14 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django_bootstrap5',
     'crispy_bootstrap5',
-    'espacio.webPublic', # Corrected path
-    'espacio.management', # Corrected path
-    'espacio.empleados', # Corrected path
-    'espacio.eventos', # Corrected path
-    'espacio.planes', # Corrected path
-    'espacio.clientes', # Corrected path
-    'espacio.configuracion', # Corrected path
-    'espacio.calendario', # Corrected path
+    'webPublic',  
+    'management', 
+    'empleados',  
+    'eventos',    
+    'planes',     
+    'clientes',   
+    'configuracion',
+    'calendario'
     'cloudinary_storage',  # Antes de staticfiles
     'django.contrib.staticfiles',
     'cloudinary',
@@ -61,7 +61,7 @@ MIDDLEWARE = [
 
 ]
 
-ROOT_URLCONF = 'espacio.urls'
+ROOT_URLCONF = 'espacio.espacio.urls'
 
 TEMPLATES = [
     {
@@ -79,7 +79,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'espacio.wsgi.application'
+WSGI_APPLICATION = 'espacio.espacio.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(default=os.getenv('DATABASE_URL')) #Deploy en render
