@@ -1,15 +1,15 @@
-"""
-WSGI config for espacio project.
-
-It exposes the WSGI callable as a module-level variable named ``application``.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/5.1/howto/deployment/wsgi/
-"""
-
 import os
+import sys  # <--- ¡Añade esta línea!
 
 from django.core.wsgi import get_wsgi_application
+
+# --- ¡Añade estas líneas de depuración! ---
+print("--- DEBUG: Contenido de sys.path en wsgi.py ---")
+for p in sys.path:
+    print(p)
+print("--- Fin DEBUG sys.path ---")
+print(f"--- DEBUG: DJANGO_SETTINGS_MODULE en wsgi.py: {os.environ.get('DJANGO_SETTINGS_MODULE')} ---")
+# ----------------------------------------
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'espacio.espacio.settings')
 
