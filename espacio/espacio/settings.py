@@ -32,7 +32,6 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',  
-    'django.contrib.staticfiles',
     'crispy_forms',
     'django_bootstrap5',
     'crispy_bootstrap5',
@@ -44,8 +43,10 @@ INSTALLED_APPS = [
     'clientes',
     'configuracion',
     'calendario',
-    'cloudinary', #Deploy en render
-    'cloudinary_storage', #Deploy en render
+    'cloudinary_storage',  # Antes de staticfiles
+    'django.contrib.staticfiles',
+    'cloudinary',
+
 ]
 
 MIDDLEWARE = [

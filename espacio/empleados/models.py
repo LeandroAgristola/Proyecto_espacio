@@ -1,5 +1,7 @@
 from django.db import models
 import os
+from cloudinary.models import CloudinaryField 
+
 
 class Empleado(models.Model):
     # Campos básicos del empleado

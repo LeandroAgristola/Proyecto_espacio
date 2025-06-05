@@ -2,6 +2,7 @@ from django.db import models
 import os
 from django.core.exceptions import ValidationError
 from clientes.models import Cliente
+from cloudinary.models import CloudinaryField 
 
 class Evento(models.Model):
     titulo = models.TextField(max_length=50)
