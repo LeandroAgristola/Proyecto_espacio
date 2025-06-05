@@ -1,18 +1,18 @@
 #!/usr/bin/env bash
 set -o errexit
 
-# Instala las dependencias. La ruta ya es correcta si build.sh está en la raíz.
+# Instala las dependencias.
 pip install -r requirements.txt
 
-# Ejecuta collectstatic (nota la ruta a manage.py)
+# Ejecuta collectstatic (la ruta correcta a manage.py)
 python espacio/manage.py collectstatic --noinput
 
-# Ejecuta migraciones (nota la ruta a manage.py)
+# Ejecuta migraciones (la ruta correcta a manage.py)
 python espacio/manage.py migrate
 
-# Establece PYTHONPATH para que Python pueda encontrar 'espacio.settings'
-# La ruta '.' se refiere al directorio actual, que es la raíz del repositorio
+# Establece PYTHONPATH para que Python pueda encontrar tus aplicaciones (ej. webPublic)
+# La ruta '.' se refiere al directorio actual (la raíz de tu repositorio en Render)
 export PYTHONPATH=$PYTHONPATH:.
 
-# Ejecuta el script de superusuario (nota la ruta al script)
-python create_superuser.py
+# Ejecuta el script de superusuario (la ruta explícita al script)
+python ./create_superuser.py
