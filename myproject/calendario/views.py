@@ -1,7 +1,7 @@
 from django.http import JsonResponse
 from datetime import timedelta, date, datetime
 from .models import Turno
-from configuracion.models import Configuracion
+from myproject.configuracion.models import Configuracion
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from calendar import monthrange
