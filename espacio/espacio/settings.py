@@ -13,23 +13,16 @@ import os
 from pathlib import Path
 from django.contrib.messages import constants as messages
 from celery.schedules import crontab
+import dj_database_url #Deploy en render
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+
 BASE_DIR = Path(__file__).resolve().parent.parent  
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-7318ciiy)2mf*@!dd-^0qk&c!a7t!i_jlz_)$q7&$rr9(=m1k+'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG', 'False') == 'True' #Deploy en render
 
 ALLOWED_HOSTS = ['*']
-
-
 
 # Application definition
 
@@ -51,6 +44,8 @@ INSTALLED_APPS = [
     'clientes',
     'configuracion',
     'calendario',
+    'cloudinary', #Deploy en render
+    'cloudinary_storage', #Deploy en render
 ]
 
 MIDDLEWARE = [
@@ -83,20 +78,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'espacio.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(default=os.getenv('DATABASE_URL')) #Deploy en render
 }
 
-
-# Password validation
-# https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -113,9 +98,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Internationalization
-# https://docs.djangoproject.com/en/5.1/topics/i18n/
-
 LANGUAGE_CODE = 'es-eu'
 
 USE_TZ = True
@@ -123,21 +105,24 @@ USE_TZ = True
 TIME_ZONE = 'America/Argentina/Buenos_Aires'  # Ajusta según tu zona horaria
 
 USE_I18N = True
+ 
+STATIC_URL = '/static/' #Deploy en render
+STATICFILES_DIRS = [os.path.join(BASE_DIR.parent, 'static')] #Deploy en render
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') #Deploy en render
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
+#MEDIA_URL = '/media/' #Deploy en render utilizamos cloudinary
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'media') #Deploy en render  cloudinary
 
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage' #Deploy en render
+CLOUDINARY_STORAGE = { #Deploy en render
+    'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'), #Deploy en render
+    'API_KEY': os.getenv('CLOUDINARY_API_KEY'), #Deploy en render
+    'API_SECRET': os.getenv('CLOUDINARY_API_SECRET'), #Deploy en render
+}
 
-STATIC_URL = '/static/'
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, '../static'),
-]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+SECURE_SSL_REDIRECT = True #Deploy en render
+SESSION_COOKIE_SECURE = True #Deploy en render
+CSRF_COOKIE_SECURE = True #Deploy en render
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5" 
 CRISPY_TEMPLATE_PACK = "bootstrap5"
@@ -151,15 +136,13 @@ MESSAGE_TAGS = {
     messages.WARNING: 'warning',
 }
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CSRF_TRUSTED_ORIGINS = [
     'https://localhost:8000',
     'http://localhost:8000',
 
 ]
-CSRF_COOKIE_SECURE = False 
+CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTPONLY = False
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"

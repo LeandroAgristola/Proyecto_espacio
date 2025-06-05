@@ -28,3 +28,5 @@ Proyecto_espacio\espacio\manage.py
 Proyecto_espacio\espacio\db.sqlite3
 Proyecto_espacio\static\css\style.css
 Proyecto_espacio\requirements.txt
+Proyecto_espacio\espacio\media\empleados
+Proyecto_espacio\espacio\media\eventos
