@@ -117,7 +117,7 @@ USE_I18N = True
 STATIC_URL = '/static/' #Deploy en render
 STATICFILES_DIRS = [os.path.join(BASE_DIR, '../static')] #Deploy en render
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') #Deploy en render
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' #Deploy en render
+STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticCloudinaryStorage'  #Deploy en render
 
 #MEDIA_URL = '/media/' #Deploy en render utilizamos cloudinary
 #MEDIA_ROOT = os.path.join(BASE_DIR, 'media') #Deploy en render  cloudinary
