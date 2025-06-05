@@ -10,7 +10,7 @@ class Evento(models.Model):
     hora = models.TimeField(null=False, blank=False)
     ubicacion = models.CharField(max_length=100, null=False, blank=False)
     cupos = models.IntegerField(default=0, null=False, blank=False)
-    imagen = models.ImageField(upload_to='eventos/', blank=True, null=True)
+    imagen = CloudinaryField('imagen', blank=True, null=True)
     precio = models.DecimalField(max_digits=10, decimal_places=2)
     estado = models.BooleanField(default=True)
     mostrar_en_web = models.BooleanField(default=False)

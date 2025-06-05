@@ -22,7 +22,7 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "inseguro-default-dev-key") #Deploy 
 
 DEBUG = os.getenv('DEBUG', 'False') == 'True' #Deploy en render
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['proyecto-espacio.onrender.com']
 
 # Application definition
 
@@ -49,6 +49,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -56,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'espacio.urls'
@@ -107,8 +109,9 @@ TIME_ZONE = 'America/Argentina/Buenos_Aires'  # Ajusta según tu zona horaria
 USE_I18N = True
  
 STATIC_URL = '/static/' #Deploy en render
-STATICFILES_DIRS = [os.path.join(BASE_DIR.parent, 'static')] #Deploy en render
+STATICFILES_DIRS = [os.path.join(BASE_DIR, '../static')] #Deploy en render
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') #Deploy en render
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' #Deploy en render
 
 #MEDIA_URL = '/media/' #Deploy en render utilizamos cloudinary
 #MEDIA_ROOT = os.path.join(BASE_DIR, 'media') #Deploy en render  cloudinary
@@ -138,10 +141,11 @@ MESSAGE_TAGS = {
 
 
 CSRF_TRUSTED_ORIGINS = [
+    'https://proyecto-espacio.onrender.com', #Deploy en render
     'https://localhost:8000',
     'http://localhost:8000',
-
 ]
+
 CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTPONLY = False
 

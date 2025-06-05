@@ -15,7 +15,7 @@ class Empleado(models.Model):
     fecha_baja = models.DateField(null=True, blank=True)
 
     # Campos para la web pública
-    imagen_perfil = models.ImageField(upload_to='empleados/', blank=True, null=True)
+    imagen_perfil = CloudinaryField('imagen', blank=True, null=True)
     mostrar_en_web = models.BooleanField(default=False)
     activo = models.BooleanField(default=True)  #Campor para saber si el empleado esta activo!
     
