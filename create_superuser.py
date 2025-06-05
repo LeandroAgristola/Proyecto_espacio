@@ -1,7 +1,7 @@
 import os
 import django
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'espacio.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'espacio.espacio.settings')
 django.setup()
 
 from django.contrib.auth import get_user_model

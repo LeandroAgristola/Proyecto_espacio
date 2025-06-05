@@ -15,4 +15,4 @@ python espacio/manage.py migrate
 export PYTHONPATH=$PYTHONPATH:.
 
 # Ejecuta el script de superusuario (nota la ruta al script)
-python ./create_superuser.py
+python create_superuser.py
