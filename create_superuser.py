@@ -1,7 +1,7 @@
 import os
 import django
 
-# La ruta correcta a tus settings, dado tu estructura 'Proyecto_espacio/espacio/espacio/settings.py'
+# Esta es la ruta correcta a tus settings para la estructura 'espacio/espacio/settings.py'
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'espacio.espacio.settings')
 django.setup()
 
