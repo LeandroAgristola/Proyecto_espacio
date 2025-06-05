@@ -10,19 +10,16 @@ python espacio/manage.py collectstatic --noinput
 # Ejecuta migraciones (la ruta correcta a manage.py)
 python espacio/manage.py migrate
 
-# --- ¡NUEVO CAMBIO CRUCIAL AQUÍ! ---
-# Establece PYTHONPATH para que Python pueda encontrar tus aplicaciones (ej. webPublic).
-# Añade la carpeta 'espacio/' al PYTHONPATH, ya que tus apps están directamente dentro de ella.
+# Establece PYTHONPATH para que Python pueda encontrar tus aplicaciones
+# Añade la carpeta 'espacio/' donde residen tus apps
 export PYTHONPATH=$PYTHONPATH:./espacio/
 
-# --- DIAGNÓSTICO TEMPORAL: LISTAR CONTENIDO PARA VERIFICAR RUTAS ---
-# Esto listará el contenido de la carpeta 'espacio/' y de la raíz del proyecto.
-# Nos ayudará a confirmar si las carpetas se ven como esperamos en Render.
-echo "--- Contenido de la raíz del proyecto (/opt/render/project/src/) ---"
-ls -la .
-echo "--- Contenido de la carpeta espacio/ (/opt/render/project/src/espacio/) ---"
+# --- ¡NUEVAS LÍNEAS DE DIAGNÓSTICO PROFUNDO AQUÍ! ---
+echo "--- Contenido DETALLADO de espacio/ (proyecto Django principal) ---"
 ls -la espacio/
-# --- FIN DIAGNÓSTICO TEMPORAL ---
+echo "--- Contenido DETALLADO de espacio/espacio/ (donde está settings.py) ---"
+ls -la espacio/espacio/
+# --- FIN DIAGNÓSTICO PROFUNDO ---
 
 
 # Ejecuta el script de superusuario (la ruta explícita al script)
