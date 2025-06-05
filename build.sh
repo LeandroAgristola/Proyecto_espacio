@@ -11,4 +11,4 @@ python espacio/manage.py collectstatic --noinput
 python espacio/manage.py migrate
 
 # Ejecuta el script de superusuario (nota la ruta al script)
-python espacio/create_superuser.py
+python ./create_superuser.py
