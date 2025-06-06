@@ -23,9 +23,10 @@ class Empleado(models.Model):
     
     # Método para eliminar la imagen al borrar el empleado
     def delete(self, *args, **kwargs):
-        if self.imagen_perfil and os.path.isfile(self.imagen_perfil.path):
-            os.remove(self.imagen_perfil.path)
-        super().delete(*args, **kwargs)
+        # ¡ELIMINAR ESTAS LÍNEAS! Cloudinary se encarga automáticamente.
+        # if self.imagen_perfil and os.path.isfile(self.imagen_perfil.path):
+        #     os.remove(self.imagen_perfil.path)
+        super().delete(*args, **kwargs) # Llamar al método delete original después.
 
     def __str__(self):
         return f"{self.nombre} {self.apellido}"

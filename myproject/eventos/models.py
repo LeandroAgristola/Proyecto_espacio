@@ -1,7 +1,6 @@
 from django.db import models
-import os
 from django.core.exceptions import ValidationError
-from myproject.clientes.models import Cliente
+from myproject.clientes.models import Cliente # Asegúrate de que esta importación sea 'myproject.clientes'
 from cloudinary.models import CloudinaryField 
 
 class Evento(models.Model):
@@ -43,17 +42,17 @@ class Evento(models.Model):
         self.clean()
         super().save(*args, **kwargs)
 
-    # Validación para asegurarse de que la imagen sea un archivo de imagen
+    # Método para eliminar el evento y su imagen de Cloudinary
     def delete(self, *args, **kwargs):
         InscripcionEvento.objects.filter(evento=self).delete()
-        if self.imagen and os.path.isfile(self.imagen.path):
-            os.remove(self.imagen.path)
-        super().delete(*args, **kwargs)
+        # ¡ELIMINAR ESTAS LÍNEAS! Cloudinary se encarga automáticamente
+        # if self.imagen and os.path.isfile(self.imagen.path):
+        #     os.remove(self.imagen.path)
+        super().delete(*args, **kwargs) # Llamar al método delete original después.
 
     def __str__(self):
         return f"{self.titulo} - {self.fecha.strftime('%d/%m/%Y')}"
     
-
 class InscripcionEvento(models.Model):
     ESTADOS = (
         ('pendiente', 'Pendiente'),
