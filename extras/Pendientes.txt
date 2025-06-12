@@ -22,31 +22,19 @@ Nuevas funcionalidades:
         Para subir a Google Drive: necesitas autenticar una cuenta (OAuth2) y usar pydrive o google-api-python-client.
         No tengo configurada una cuenta de Drive con credenciales para esto, ya que estamos en desarrollo y no tenemos datos del cliente.
 
-Proyecto_espacio/
-├── espacio/
-│   ├── manage.py
-│   ├── espacio/
-│   │   ├── settings.py
-│   │   ├── wsgi.py
-│   │   └── __init__.py  
-│   ├── __init__.py      
-│   ├── webPublic/      
-│   │   ├── migrations/
-│   │   ├── admin.py
-│   │   ├── apps.py
-│   │   ├── models.py
-│   │   ├── views.py
-│   │   └── __init__.py  
-│   ├── management/
-│   │   └── __init__.py 
-│   ├── empleados/
-│   │   └── __init__.py  
-│   ├── eventos/
-│   │   └── __init__.py  
-│   ├── planes/
-│   │   └── __init__.py  
-│   └── clientes/
-│       └── __init__.py 
-├── build.sh
-├── requirements.txt
-└── create_superuser.py
+
+
+📣 Transformá la gestión de tu estudio de Pilates con una solución integral
+Hola! Estoy ofreciendo un sistema de gestión web especialmente diseñado para estudios de bienestar como el tuyo.
+
+👉 Con esta plataforma vas a poder administrar fácilmente tus clases, planes, clientes, personal, eventos y turnos desde un solo lugar, con una web pública moderna y atractiva que podés personalizar a tu estilo.
+
+💡 Esta es solo una propuesta base: el sistema es completamente adaptable y se pueden agregar todas las funcionalidades que necesites según las características de tu estudio.
+
+🎥 Te dejo un video demo para que lo veas en funcionamiento:
+🔗 https://youtu.be/p0CCWxSxt6c?si=w3B-6P5ikFnYUD3m
+
+Si te interesa charlar más o hacer una prueba, escribime y lo vemos juntos. ¡Estoy disponible para adaptarlo 100% para ustedes!
+
+
+
